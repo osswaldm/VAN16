@@ -105,8 +105,8 @@ This paper seeks to find a way to shape FCM's out of large data amounts by apply
 \subsection{Fuzzy Cognitive Maps}
 The widely known mind map is at the roots of the FCM. A mind map starts with a central term or concept. Other terms that are associated with this initial term, are written around the first one and linked with graphs to each other. These associated terms may be used as central nodes as well so that in the end a tree structure is formed.\\
 FCM are a extension of the concept of cognitive maps where precise or abstract concepts can be interconnected\cite{kosko1986}. In cognitive maps the concepts are represented by nodes, the interconnections by directed graphs. Additionally the edges are used for representing the information of how a concept influences another. This information is reduced to a plus or minus, meaning that a concept exerts a positive or a negative influence to its counterpart.\\
-Compared to cognitive maps, FCM are capable to give statements about \emph{how much} concepts influences each other by introducing edge weights in the interval between -1 and 1. This leads to a major flexibility and accuracy to represent complex systems. 
-\\According to Stach et al. \cite{stach2005} a FCM can be developed either manually or computationally. The visualize the basic idea of a FCM, Figure 1 shows a fictional minimized FCM of possible influences to the profitability of a flight route from A to B.
+Compared to cognitive maps, FCM are capable to give statements about \emph{how much} concepts influence each other by introducing edge weights in the interval between -1 and 1. This leads to a major flexibility and accuracy to represent complex systems.\\
+According to Stach et al. \cite{stach2005} a FCM can be developed either manually or computationally. The visualize the basic idea of a FCM, Figure 1 shows a fictional minimized FCM of possible influences to the profitability of a flight route from A to B.
 
 \begin{figure}[ht]
 \includegraphics[width=3in]{img/ficFCM.png}
@@ -123,7 +123,7 @@ We follow formal definition by Stach et al. \cite{stach2005}. It provides a poss
 \item \begin{math} N = {N_{1},N_{2},...,N_{n}} \end{math} is the set of n concepts forming the nodes of a graph.
 \item \begin{math} E: (N_{i},N_{j}) \rightarrow e_{ij} \end{math} is a function of \begin{math} N \times N \end{math} to \begin{math} K \end{math} associating \begin{math} e_{ij} \end{math} equal to zero if \begin{math} i = j \end{math}. Thus \begin{math} E(N \times N) = (e_{ij}) \in K^{n \times n} \end{math} is a connection matrix.
 \item \begin{math} C: N_{i} \rightarrow C_{i} \end{math} is a function that at each concept \begin{math} N_{i} \end{math} associates the sequence of its activation degrees such as for \begin{math} t \in \mathbb{N}, C_{i}(t) \in L \end{math} given its activation degree at the moment \begin{math} t \end{math}. \begin{math} C(0) \in L^{n} \end{math} indicates the initial vector and specifies initial values of all concept nodes and \begin{math} C(t) \in L^{n} \end{math} is a state vector at certain iteration \begin{math} t \end{math}.
-\item \begin{math} f: \mathbb{R} \rightarrow L \end{math} is a transformation function, which includes recurring relationship on \begin{math} t \geq 0 \end{math} between \begin{math} C(t+1) \end{math} and \begin{math} C(t) \end{math}.
+\item \begin{math} f: \mathbb{R} \rightarrow L \end{math} is a transformation function, which includes recurring relationship on \begin{math} t \geqslant 0 \end{math} between \begin{math} C(t+1) \end{math} and \begin{math} C(t) \end{math}.
 \end{enumerate}
 A simulation run on a FCM starts with a scenario which is expressed in an initial vector. This vector is included in the functional model. The result of the calculation step is a new vector, the so-called state vector. The relationship between the initial vector and the iteration result is a cause-effect statement.\\
 When iterating the FCM for several times, it is possible that a pattern can occur. The sequence of the state vectors is then repeating. If the state vector does not change anymore, the FCM is in a steady state. On the other hand it is also possible that with every iteration a new state vector is produced. This kind of FCM is called chaotic.\\
@@ -134,13 +134,13 @@ The functional model described by Stach et al. \cite{stach2005} is as follows:\\
 In this way, the initial vector is being multiplied with the vector of corresponding edge weights. Since these weights are supposed to be between -1 and 1, a transformation function is used to stick to a certain range defined at the beginning. There are many different ways to normalize the values, the most common ones according to Stach et al. \cite{stach2005} are the following:
 \begin{itemize}
 \item bivalent: \begin{math} f(x) = \begin{cases} 
-0 & \text{if } x \leq 0\\ 
+0 & \text{if } x \leqslant 0\\ 
 1 & \text{if } x > 0
 \end{cases} \end{math}
 \item trivalent: \begin{math} f(x) = \begin{cases}
--1 & \text{if } x \leq -0.5\\
+-1 & \text{if } x \leqslant -0.5\\
 0 & \text{if } -0.5 < x < 0.5\\
-1 & \text{if } x \geq 0.5
+1 & \text{if } x \geqslant 0.5
 \end{cases} \end{math}
 \item logistic: \begin{math} f(x) = \frac{1}{1+e^{-cx}}, c \in \mathbb{R} \end{math}
 \end{itemize}
@@ -155,7 +155,7 @@ If a node has a positive outdegree and zero indegree, it is a transmitter node. 
 The relevance of a node within the FCM can be expressed with the centrality \begin{math}td_{i} \end{math} which is simply the sum of outdegree and indegree. The higher this number, the higher the influence on the FCM. Finally, the connectivity of the whole FCM can be measured with the density \begin{math} d \end{math}, which is the ratio of existing to all possible connections.\\
 
 \subsection{Restriction Centered Theory}
-With a word, a human can express fuzziness in a much simpler way than using complex probabilistic models, because its reduces the failure of and simplifies communication. \emph{"Its cold"} is an expression about a feeling, which everyone might have different perception in the form of degrees. Nonetheless there is a common understanding of this feeling. The challenge is to transform these words into a computable form. In brief, this is what RCT is seeking for.\\
+With a word, a human can express fuzziness in a much simpler way than using complex probabilistic models, because its reduces the failure of and simplifies communication. \emph{"It is cold"} is an expression about a feeling, which everyone might have different perception in the form of degrees. Nonetheless there is a common understanding of this feeling. The challenge is to transform these words into a computable form. In brief, this is what RCT is seeking for.\\
 \subsubsection{General Idea of the RCT}
 If an answer to the question \emph{"How true is X?"} is expressed with an interval, the range of the value is a numerical value between 0 and 1 (or likewise the interval is defined). The same is valid for a set with predefined values or a probability distribution. Each of these concepts has a homogeneous range. A word can be used in two different ranges, i.e. in two different contexts. And, even worse, according to the context it is used in, the same word can have different meanings.\\
 The central concept of the RCT is the restriction. It can be implemented in a more general way than an interval, a set or a probability distribution. The range of a restriction is a melting pot with all the concepts mentioned, it can take any value you can think of. To recognize the size of this range, here an example: If a human is asked a question like \emph{"How profitable is the flight from A to B"}, his answers might be \emph{"It's 6.3 Billion Dollar per year"}, \emph{"It is more profitable than flight A to C"}, \emph{"It is not really profitable"}, \emph{"It is not as profitable as expected"} and so on.\\
@@ -190,7 +190,7 @@ The following use case will investigate on the passenger flows of an airline. A 
 The data for this use case was provided by Swiss (airline code: LX). It contains 1371280 passenger records from January 2013, all these passengers travelled with one or more flights operated by LX. Every record contains the following information: Origin and destination of the traveler's journey (in separate fields), departure and arrival of the segment, flight number (operator and number in separate fields) and the document number.\\
 
 \subsection{Design of the FCM}
-When designing a new FCM, the specifications of the nodes, the graphs and the properties have to be determined before importing the data. The nodes are depicted as routes. Hence, a connecting passenger from Los Angeles through Zurich to Paris would be depicted as a link from the node ZRH-LAX (Zuerich to LA) to the node ZRH-CDG (Zuerich to Paris), as shown in Figure \ref{fig:noderoute}. The intermediate airport is mentioned twice in the node. If an airline has more than only one main hub, it is important to be able to distinguish the routes between the hubs. With the route node specification, this is assured.
+When designing a new FCM, the specifications of the nodes, the graphs and the properties have to be determined before importing the data. The nodes are depicted as routes. Hence, a connecting passenger from Los Angeles through Zurich to Paris would be depicted as a link from the node ZRH-LAX (Zurich to LA) to the node ZRH-CDG (Zurich to Paris), as shown in Figure \ref{fig:noderoute}. The intermediate airport is mentioned twice in the node. If an airline has more than only one main hub, it is important to be able to distinguish the routes between the hubs. With the route node specification, this is assured.
 \begin{figure}[h]
 \includegraphics[width=3in]{img/route.png}
 \caption{Specification of FCM Nodes as Routes}
@@ -214,9 +214,9 @@ All of the adjectives are supposed to express the frequency of a connection and 
 
 \begin{equation}
 f(rarely)= \begin{cases}
-500x + 0.5 & \text{if } 0 \leqslant x < 0.001\\
-1 & \text{if } 0.001 \leqslant x < 0.003\\
--500x + 2.5 & \text{if } 0.003 \leqslant x < 0.005
+50x + 0.5 & \text{if } 0 \leqslant x < 0.01\\
+1 & \text{if } 0.01 \leqslant x < 0.03\\
+-50x + 2.5 & \text{if } 0.03 \leqslant x < 0.05
 \end{cases}
 \end{equation}
 
@@ -225,7 +225,8 @@ The frame of the sentences has to be defined for both issues that are considered
 The second issue that is considered in the use case, describes the frequency of connecting passengers from a specific route to any other route. Here, the frame will be: \newline \emph{"Passengers travelling on the route (a) [b] connect to another flight."} \newline Here, for simplicity reasons, only the route \emph{(a)} and the describing word \emph{[b]} are used. Thus, it is a more general statement about connecting passengers, but nevertheless, the importance for analysis is at least as big as for the first issue.
 
 \subsection{Verbalization of the FCM}
-After having defined and created the FCM, some specific connecting combinations are investigated. The first issue is the connection from New York (JFK) via Zurich (ZRH) to Tel Aviv (TLV). The rate of passengers connecting from ZRH-JFK to ZRH-TLV is 0.0298. Based on this value, the truth value is now calculated for every adjective. There are two words having a maximum truth value of 1, that is, rarely and occasionally. These words can be used synonymously, which means that one word can be picked randomly. The sentence to be built would then be: \newline \emph{"Passengers travelling from New York JFK to Zurich \textbf{occasionally} connect to Tel Aviv."} \newline Some other ten sentences are built in the same way. The choice of connections should cover the whole variety of long and short haul combinations, as well as journeys through all the three hubs. All the generated sentences are listed below:
+After having defined and created the FCM, some specific connecting combinations are investigated. The choice of connections should cover the whole variety of long and short haul combinations, as well as journeys through all the three hubs.\\
+The first issue is the connection from New York (JFK) via Zurich (ZRH) to Tel Aviv (TLV). The rate of passengers connecting from ZRH-JFK to ZRH-TLV is 0.0298. Based on this value, the truth value is now calculated for every adjective. There are two words having a maximum truth value of 1, that is, rarely and occasionally. These words can be used synonymously, which means that one word can be picked randomly. The sentence to be built would then be: \newline \emph{"Passengers travelling from New York JFK to Zurich \textbf{occasionally} connect to Tel Aviv."} \newline The following ten sentences are generated in the same way:
 \begin{enumerate}
 \item Passengers travelling from Dar es Salaam to Zurich often connect to London Heathrow.
 \item Passengers travelling from Palma de Mallorca to Geneva frequently connect to Zurich.
@@ -239,20 +240,24 @@ After having defined and created the FCM, some specific connecting combinations 
 \item Passengers travelling on the route Zurich-London Heathrow frequently connect to another flight.
 \end{enumerate}
 
+\subsection{Validation of the Output}
+The validation of the sentences mentioned in the previous section is done by Mr. Wolfensberger, former Head of Channel Management at Swiss International Air Lines Ltd. He is very experienced in the analysis of revenue and passenger data, as he jointly led the development of the passenger revenue information system and later introduced the booking outlook revenue information system. In his present position in Channel Management he is basically dealing with prognostics and market behavior, which is however often based on the analysis of the current or recently past situation.\\
+In his feedback, he brought up important points regarding the number and choice of adjectives. The seasonal factor is pointed out as an improvement potential, so if the tool is used in a productive environment, this has imperatively to be implemented. The pleasing part of the feedback is, that there are no doubts about the correctness of the statements with regards to content. This loeads to the conclusion that this use case was successful to prove the feasibility of verbalizing circumstances of a FCM with the aid of RCT.
+
 \section{Lessons learned}
 There were three main points in the user's feedback that need to be improved:
 \begin{itemize}
-\item The adjective "never" should be replaced by "do not"
+\item The adjective \emph{never} should be replaced by \emph{do not}
 \item The number of adjectives should be reduced
-\item The adjective "usually" should be replaced by a different, unspecified word
+\item The adjective \emph{usually} should be replaced by a different, unspecified word
 \end{itemize}
-It is true that the word "never" implies a certain finality, saying that passengers do not connect neither now nor in future between two routes. Therefore it makes sense to replace it by a word such as "do not" which rather makes a statement about the content and does not imply anything for future periods.\\
-In order to simplify business decisions it makes sense to reduce the number of adjectives. Each word would then cause a specific decision to be made. However, the sense of the tool is supposed to depict a big spectrum of adjectives, and hence, the tool can be used for a pre-analysis pointing out fields where deeper analysis is necessary. The business decisions should then be taken based on these further analyses.\\
-In a user's perception, the word "usually" is based on a standard that is either fulfilled or not. Since this standard is varying on every route and possibly even in every month, he disadvises the usage of the adjective. The shares that are used for choosing the word are based on the share of connecting passengers on the original route. Hence, the rating basis is varying on every route by definition. But, it is true that the seasonal factor, which has a very high importance in airline industry, is not considered in the tool. Doing so would imply a heavily higher data load and a time related dimension, which was not acceptable for the present use case.
+It is true that the word \emph{never} implies a certain finality, saying that passengers do not connect neither now nor in future between two routes. Therefore it makes sense to replace it by a word such as \emph{do not} which rather makes a statement about the content and does not imply anything for future periods.\\
+In order to simplify business decisions, it makes sense to reduce the number of adjectives. Each word would then cause a specific decision to be made. However, the sense of the tool is supposed to depict a big spectrum of adjectives, and hence, the tool can be used for a pre-analysis pointing out fields where deeper analysis is necessary. The business decisions should then be taken based on these further analyses.\\
+In a user's perception, the word \emph{usually} is based on a standard that is either fulfilled or not. Since this standard is varying on every route and possibly even in every month, he disadvises the usage of the adjective. The shares that are used for choosing the word are based on the share of connecting passengers on the original route. Hence, the rating basis is varying on every route by definition. But, it is true that the seasonal factor, which has a very high importance in airline industry, is not considered in the tool. Doing so would imply a heavily higher data load and a time related dimension, which was not acceptable for the present use case.
 
 \section{Conclusion}
 FCM are used in many different fields of application: Medicine \cite{georgopoulos2003}, Ecology \cite{ozesmi2004}, Economy \cite{carvalho2004}, IT Project Management \cite{rodriguez2007} and many more. The interpretation of the underlying FCM was preferentially done with If-Then sentences, where a premise leads to a specific result.\\
-This kind of interpretation contradicts the concept of fuzziness fundamentally, even though it is possible to formulate the premise as "If something is true to 0.2, then...". But the basic idea of having concepts and measuring the degree of membership in a fuzzy way is complex, because every fuzzy membership has to be expressed in many different If-Then clauses. With the possibilistic distribution, the RCT provides an instrument that eases the allocation of fuzzy membership degrees to concepts.\\
+This kind of interpretation contradicts the concept of fuzziness fundamentally, even though it is possible to formulate the premise as \emph{"If something is true to 0.2, then..."}. But the basic idea of having concepts and measuring the degree of membership in a fuzzy way is complex, because every fuzzy membership has to be expressed in many different If-Then clauses. With the possibilistic distribution, the RCT provides an instrument that eases the allocation of fuzzy membership degrees to concepts.\\
 With the chosen approach of turning FCM output into natural language with the aid of the RCT, the interpretation of the FCM is left to the experts who build the FCM. They are in lead to define the sentence framework, to precisiate the set of words that is used and to specify the associated membership functions. This bares on one hand the chance that the content is made understandable to a bigger community, on the other hand there is the risk, that some information are manipulated or withheld, be it by mistake or even on purpose.\\
 In his paper, Hagiwara \cite{hagiwara1992} points out three major improvement fields of the common FCM: 
 \begin{itemize}
@@ -263,7 +268,7 @@ In his paper, Hagiwara \cite{hagiwara1992} points out three major improvement fi
 Especially the first point is interesting when trying to depict customer behavior in relation to the price, which is usually not linear but elastic. It also shows that the full potential of this approach is not yet exploited by far.\\
 The introduction of a time dimension on the FCM is to be investigated. This is basically a problem of data size, which is even intensified when combining it with the learning algorithms.\\
 On the RCT side the translation of results from the automated pattern recognition into natural language is a field, where many questions are not yet answered, especially in terms of granularity. This would make it possible to evaluate a FCM on an aggregated level and then to infer statements about more detailed parts of the FCM.\\
-When reading these perspectives, one has always to keep in mind, that a FCM -- like every model -- is an abstraction of the real world. The goal of an abstraction is to create a simplified picture of complex relations. Many of the above-mentioned ideas do not imply any reduction of complexity when modeling the data with nowadays' technology. Nevertheless, this should be understood as an inspiration and motivation for tomorrow's ambitions.
+When reading these perspectives, one has always to keep in mind, that a FCM (like every model) is an abstraction of the real world. The goal of an abstraction is to create a simplified picture of complex relations. Many of the above-mentioned ideas do not imply any reduction of complexity when modeling the data with nowadays' technology. Nevertheless, this should be understood as an inspiration and motivation for tomorrow's ambitions.
 
 \section*{Acknowledgment}
 The authors would like to thank Mr. Wolfensberger, former Head of Channel Management at Swiss International Air Lines Ltd., who checked the verbalized output of the FCM and gave precious feedback from a user's perspective.
