@@ -85,7 +85,7 @@ Email: edy.portmann@iwi.unibe.ch}}
 \maketitle
 
 \begin{abstract}
-Fuzzy Cognitive Maps (FCM) are a representation of concepts affecting one another. By connecting these concepts, FCM's are capable to show dependencies and relationships to a certain degree. Normally this dependencies are numerically translated which impedes the interpretability for humans. This paper seeks to turn the mathematical output of a Fuzzy Cognitive Map into natural language sentences applying the Restriction Centered Theory (RCT) to enhance the knowledge transfer possibilites of FCM for humans. The proposed framework connects these concepts to produce not only verbalized dependencies but provides also statements about these dependencies of the FCM. \\
+Fuzzy Cognitive Maps (FCM) are a representation of concepts affecting one another. By connecting these concepts, FCM's are capable to show dependencies and relationships to a certain degree between these.  Normally this dependencies are numerically translated which impedes the interpretability for humans. This paper seeks to turn the mathematical output of a Fuzzy Cognitive Map into natural language sentences applying the Restriction Centered Theory (RCT) to enhance the knowledge transfer possibilites of FCM for humans. The proposed framework connects these concepts to produce not only verbalized dependencies but provides also statements about these dependencies of the FCM. \\
 As a proof of concept a use case is introduced, where an airline's connecting passenger flows are analyzed. The statements of the frameworks output is verified by an expert of the data-owning company.\\
 Keywords: Fuzzy Cognitive Maps, Restriction Centered Theory, Verbalization of dependencies
 \end{abstract}
@@ -114,7 +114,7 @@ According to Stach et al. \cite{stach2005} a FCM can be developed either manuall
 \label{fig:cm}
 \end{figure}
 
-FCM are widely used to represent a collection of knowledge of experts expressed by causal weighted digraphs. The developed model can be also interpreted by non field specific experts. This facilitates the transfer of knowledge in a simple, visual nature. If enough field specific data is available, FCM can be developed directly on this data and verified by field specific experts. These allows FCM to model complex problems based on large amounts of data and reduce it to the essential causal dependencies. This becomes more and more a useful property since the global available amounts of data are growing increasingly in our days.\\
+FCM are widely used to represent a collection of knowledge of experts expressed by causal weighted digraphs. The developed model can be also interpreted by non field specific experts. This facilitates the transfer of knowledge in a simple, visual nature. If enough field specific data is available, FCM can be developed directly on this data and verified by field specific experts. That allows FCM to model complex problems based on large amounts of data and reduce it to the essential causal dependencies. This becomes more and more a useful property since the global available amounts of data are growing increasingly in our days.\\
 Developed FCM's can be used to \emph{explain} a complex system by showing degrees of causal influences of for the system relevant concepts. They can \emph{predict} how changes of these causal influences can affect other concepts or the system as whole. They are helping decision makers to \emph{reflect} over a given situation and see where adjustments are needed, this can be also influence the \emph{strategical planning}. Finally they can \emph{visualize} a complex system by introducing a graphical interface \cite{papageorgiou2013}.
 
 \subsubsection{Formal Definition of FCM}
@@ -127,34 +127,12 @@ A FCM \begin{math} F = [-1,1] \end{math} is a 4-tuple \begin{math} (N,E,C,f) \en
 \end{enumerate}
 with \begin{math} \mathbb{R} \end{math} as a the set of real numbers and \begin{math} \mathbb{N} \end{math} denotes the set of natural numbers. \begin{math} K = [-1,1] \end{math} and \begin{math} L = [0,1] \end{math} \cite{stach2005}
 
-A simulation run on a FCM starts with a scenario which is expressed in an initial vector. This vector is included in the functional model. The result of the calculation step is a new vector, the so-called state vector. The relationship between the initial vector and the iteration result is a cause-effect statement.\\
-When iterating the FCM for several times, it is possible that a pattern can occur. The sequence of the state vectors is then repeating. If the state vector does not change anymore, the FCM is in a steady state. On the other hand it is also possible that with every iteration a new state vector is produced. This kind of FCM is called chaotic.\\
-The functional model described by Stach et al. \cite{stach2005} is as follows:\\
-\begin{equation}
+The initiation of FCM starts with a initial vector, as input in a functional model(\ref{eq:fm}- \cite{stach2005}), this results in (initial) state vector. If over several iterations the sequence of state vectors is repeating, a steady state is reached.  
+\begin{equation}\label{eq:fm}
 \forall i \in \{1,...,n\},C_{i}(t+1) = f  \bigg(\sum_{i=1 \atop i \neq j}^{n} e_{ji}C_{j}(t)\bigg)
 \end{equation}
-In this way, the initial vector is being multiplied with the vector of corresponding edge weights. Since these weights are supposed to be between -1 and 1, a transformation function is used to stick to a certain range defined at the beginning. There are many different ways to normalize the values, the most common ones according to Stach et al. \cite{stach2005} are the following:
-\begin{itemize}
-\item bivalent: \begin{math} f(x) = \begin{cases} 
-0 & \text{if } x \leqslant 0\\ 
-1 & \text{if } x > 0
-\end{cases} \end{math}
-\item trivalent: \begin{math} f(x) = \begin{cases}
--1 & \text{if } x \leqslant -0.5\\
-0 & \text{if } -0.5 < x < 0.5\\
-1 & \text{if } x \geqslant 0.5
-\end{cases} \end{math}
-\item logistic: \begin{math} f(x) = \frac{1}{1+e^{-cx}}, c \in \mathbb{R} \end{math}
-\end{itemize}
-In order to interpret a FCM at a first glance, several key indicators can be used. According to \"Ozesmi and \"Ozesmi \cite{ozesmi2004}, a node can be classified into three types: transmitter, receiver and ordinary. The determination is done based on two ,key figures, outdegree and indegree. The outdegree \begin{math} od_{i} \end{math} of a node \begin{math} N_{i} \end{math} is the sum of its outgoing absolute edge weights, while the indegree \begin{math} id_{i} \end{math} of node \begin{math} N_{i} \end{math} sums the absolute weights of all incoming edges.\\
-\begin{equation}
-od_{i} = \sum_{j=1}^{n}|e_{ij}|
-\end{equation}
-\begin{equation}
-id_{i} = \sum_{j=1}^{n}|e_{ji}|
-\end{equation}
-If a node has a positive outdegree and zero indegree, it is a transmitter node. If it has zero outdegree and positive indegree, it is a receiver node. If both of the degrees are positive, it is an ordinary node.\\
-The relevance of a node within the FCM can be expressed with the centrality \begin{math}td_{i} \end{math} which is simply the sum of outdegree and indegree. The higher this number, the higher the influence on the FCM. Finally, the connectivity of the whole FCM can be measured with the density \begin{math} d \end{math}, which is the ratio of existing to all possible connections.\\
+Equation shows the multiplication of the initial vector with the corresponding weights. By applying a tranformation function, these weights can be normalized in the range of -1 to 1. To intpret a FCM a first step several indicators can be used i.e. nodes can be classified into transmitter, receiver and ordinary, determined by the indegree and outdegree of each node \cite{ozesmi2004}. The centrality of node can the simply be measured by summing up the outdegree and indegree.
+
 
 \subsection{Restriction Centered Theory}
 Fuzziness can be either expressed by using complex probabilistic models or, much simpler, a single word. \emph{"The flight lasts long"} is a statement of a person that may be grasped differently, even though there is a conjoint understanding about the concept of longevity. In brief, the RCT is seeking to evaluate the duration of a flight that is perceived as being long.
