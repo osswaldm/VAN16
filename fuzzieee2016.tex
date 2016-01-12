@@ -85,7 +85,7 @@ Email: edy.portmann@iwi.unibe.ch}}
 \maketitle
 
 \begin{abstract}
-Fuzzy Cognitive Maps (FCM) are a representation of concepts affecting one another to a certain degree. This allows to represent dependencies and relationships between concepts. Normally this dependencies are numerically translated which impedes the interpretability for humans. This paper seeks to turn the mathematical output of a Fuzzy Cognitive Map into natural language sentences applying the Restriction Centered Theory (RCT) to enhance the knowledge transfer possibilites of FCM for humans. The proposed framework connects these concepts to produce not only verbalized dependencies but provides also statements about these dependencies of the FCM. \\
+Fuzzy Cognitive Maps (FCM) are a representation of concepts affecting one another. By connecting these concepts, FCM's are capable to show dependencies and relationships to a certain degree. Normally this dependencies are numerically translated which impedes the interpretability for humans. This paper seeks to turn the mathematical output of a Fuzzy Cognitive Map into natural language sentences applying the Restriction Centered Theory (RCT) to enhance the knowledge transfer possibilites of FCM for humans. The proposed framework connects these concepts to produce not only verbalized dependencies but provides also statements about these dependencies of the FCM. \\
 As a proof of concept a use case is introduced, where an airline's connecting passenger flows are analyzed. The statements of the frameworks output is verified by an expert of the data-owning company.\\
 Keywords: Fuzzy Cognitive Maps, Restriction Centered Theory, Verbalization of dependencies
 \end{abstract}
@@ -103,7 +103,7 @@ This paper seeks to find a way to shape FCM's out of large data amounts by apply
 
 \section{Theory of FCM and RCT}
 \subsection{Fuzzy Cognitive Maps}
-The widely known mind map is at the roots of the FCM. A mind map starts with a central term or concept. Other terms that are associated with this initial term, are written around the first one and linked with graphs to each other. These associated terms may be used as central nodes as well so that in the end a tree structure is formed.\\
+
 FCM are a extension of the concept of cognitive maps where precise or abstract concepts can be interconnected\cite{kosko1986}. In cognitive maps the concepts are represented by nodes, the interconnections by directed graphs. Additionally the edges are used for representing the information of how a concept influences another. This information is reduced to a plus or minus, meaning that a concept exerts a positive or a negative influence to its counterpart.\\
 Compared to cognitive maps, FCM are capable to give statements about \emph{how much} concepts influence each other by introducing edge weights in the interval between -1 and 1. This leads to a major flexibility and accuracy to represent complex systems.\\
 According to Stach et al. \cite{stach2005} a FCM can be developed either manually or computationally. The visualize the basic idea of a FCM, Figure 1 shows a fictional minimized FCM of possible influences to the profitability of a flight route from A to B.
@@ -118,13 +118,15 @@ FCM are widely used to represent a collection of knowledge of experts expressed 
 Developed FCM's can be used to \emph{explain} a complex system by showing degrees of causal influences of for the system relevant concepts. They can \emph{predict} how changes of these causal influences can affect other concepts or the system as whole. They are helping decision makers to \emph{reflect} over a given situation and see where adjustments are needed, this can be also influence the \emph{strategical planning}. Finally they can \emph{visualize} a complex system by introducing a graphical interface \cite{papageorgiou2013}.
 
 \subsubsection{Formal Definition of FCM}
-We follow formal definition by Stach et al. \cite{stach2005}. It provides a possibility to dynamically calculate a FCM with iterative steps. Let \begin{math} \mathbb{R} \end{math} be the set of real numbers, while \begin{math} \mathbb{N} \end{math} denotes the set of natural numbers. \begin{math} K = [-1,1] \end{math} and \begin{math} L = [0,1] \end{math}. A FCM \begin{math} F = [-1,1] \end{math} is a 4-tuple \begin{math} (N,E,C,f) \end{math}, where
+A FCM \begin{math} F = [-1,1] \end{math} is a 4-tuple \begin{math} (N,E,C,f) \end{math}, where
 \begin{enumerate}
-\item \begin{math} N = {N_{1},N_{2},...,N_{n}} \end{math} is the set of n concepts forming the nodes of a graph.
+\item \begin{math} N = {N_{1},N_{2},...,N_{n}} \end{math} is a set of n concepts.
 \item \begin{math} E: (N_{i},N_{j}) \rightarrow e_{ij} \end{math} is a function of \begin{math} N \times N \end{math} to \begin{math} K \end{math} associating \begin{math} e_{ij} \end{math} equal to zero if \begin{math} i = j \end{math}. Thus \begin{math} E(N \times N) = (e_{ij}) \in K^{n \times n} \end{math} is a connection matrix.
 \item \begin{math} C: N_{i} \rightarrow C_{i} \end{math} is a function that at each concept \begin{math} N_{i} \end{math} associates the sequence of its activation degrees such as for \begin{math} t \in \mathbb{N}, C_{i}(t) \in L \end{math} given its activation degree at the moment \begin{math} t \end{math}. \begin{math} C(0) \in L^{n} \end{math} indicates the initial vector and specifies initial values of all concept nodes and \begin{math} C(t) \in L^{n} \end{math} is a state vector at certain iteration \begin{math} t \end{math}.
 \item \begin{math} f: \mathbb{R} \rightarrow L \end{math} is a transformation function, which includes recurring relationship on \begin{math} t \geqslant 0 \end{math} between \begin{math} C(t+1) \end{math} and \begin{math} C(t) \end{math}.
 \end{enumerate}
+with \begin{math} \mathbb{R} \end{math} as a the set of real numbers and \begin{math} \mathbb{N} \end{math} denotes the set of natural numbers. \begin{math} K = [-1,1] \end{math} and \begin{math} L = [0,1] \end{math} \cite{stach2005}
+
 A simulation run on a FCM starts with a scenario which is expressed in an initial vector. This vector is included in the functional model. The result of the calculation step is a new vector, the so-called state vector. The relationship between the initial vector and the iteration result is a cause-effect statement.\\
 When iterating the FCM for several times, it is possible that a pattern can occur. The sequence of the state vectors is then repeating. If the state vector does not change anymore, the FCM is in a steady state. On the other hand it is also possible that with every iteration a new state vector is produced. This kind of FCM is called chaotic.\\
 The functional model described by Stach et al. \cite{stach2005} is as follows:\\
