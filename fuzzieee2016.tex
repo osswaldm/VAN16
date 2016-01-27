@@ -179,7 +179,7 @@ By combining both concepts, FCM and RCT, it is possible to formulate the content
 \label{sec:framework}
 If there exists an FCM with nodes, edges and the respective weights, the computable input is available but cannot be interpreted by an unexperienced person. The goal of the framework is to build FCM on raw data in a specific domain and to convert the numerical input of this FCM into natural language with the help of the RCT.\\
 First of all, it has to state how the RCT can make use of an FCM. The FCM is usually built based on experiences, whether they are the experts' thoughts and observations or another big amount of data. Therefore, the FCM has to serve as the ED for the RCT, as it provides the data that are used to precisiate variables.\\
-In order to build a sentence grammatically, at least a subject and a predicate are required. As a subject, a certain node of the FCM can be utilized, regardless of any context. The predicate has to be defined by the user, depending on the statement that he wants to make.\\
+In order to build a sentence grammatically, at least a subject and a predicate are required. As a subject, a certain node of the FCM can be utilized, regardless of any context. The predicate has to be defined by the user, depending on the statement that he wants to make. \\
 
 \begin{figure}[ht]
 \includegraphics[width=3.5in]{img/framework.png}
@@ -189,7 +189,8 @@ In order to build a sentence grammatically, at least a subject and a predicate a
 \end{figure}
 
 After all, this is not informative yet; two further elements have to be added to a standard sentence: an object, where another node can be placed, as well as a descriptive word such as an adjective or adverb. It is possible that the edge weight can be used for this purpose, as it provides an idea about the strength of a relationship between the subject and object. Depending on the weight, a certain word is chosen to describe the content.\\
-Here, the RCT comes into play. The choice of words is similar to a possibilistic restriction. Each word has a different membership function, and the totality of word options should cover the whole range of edge weights. The membership degree of each eligible word has to be then evaluated, and the maximum among them is to be chosen. If there are two or more words with the same membership degree, it has to be assumed that these words can be used similarly (i.e., synonyms).\\
+Here, the RCT comes into play. The choice of words is similar to a possibilistic restriction, as outlined in the previous section. Hence, each word has a different membership function according to the connecting passenger frequency. This represents the membership of the word $X$ to the fuzzy connecting frequency set $A$.\\
+The totality of word options should cover the whole range of edge weights. The membership degree of each eligible word has to be then evaluated, and the maximum among them is to be chosen. If there are two or more words with the same membership degree, it has to be assumed that these words can be used similarly (i.e., synonyms).\\
 A different nature of statements can also be made based on key figures such as the outdegree or the centrality of a node. Additionally, the state of a node at a certain moment during a simulation bears instructive information.\\
 The nature of statements strongly depends on the content of the FCM. This context-dependency is what makes it very difficult to define, for example, clear sets of words that can be used for any purpose.\\
 In the following section, a use case is presented to prove the validity of the outlined framework.
